@@ -1,3 +1,4 @@
+import 'package:exo3/widgets/my_form_page.dart';
 import 'package:exo3/widgets/my_home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue
       ),
-      home: MyHomePage(title: title)
+      home: MyFormPage(title: 'Mon premier formulaire')
     );
   }
 }

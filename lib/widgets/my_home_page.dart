@@ -53,12 +53,12 @@ class _MyHomePageState extends State<MyHomePage> {
     List<Widget> result = [];
     for (CategoryEnum category in CategoryEnum.values) {
       List<Widget> internalContainerListView = [];
-      internalContainerListView.add(Container(
-          margin: const EdgeInsets.all(12),
-          child: Text(
-            category.name.toUpperCase(),
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          )));
+      // internalContainerListView.add(Container(
+      //     margin: const EdgeInsets.all(12),
+      //     child: Text(
+      //       category.name.toUpperCase(),
+      //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      //     )));
       internalContainerListView.addAll(_drawTasks(category));
       result.add(Container(
           margin: const EdgeInsets.all(12),
@@ -71,8 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     spreadRadius: 2,
                     blurRadius: 5),
               ]),
-          child: Column(
-            children: internalContainerListView,
+          child: ExpansionTile(
+            title: Text(category.name.toUpperCase()),
+            children: internalContainerListView
           )));
     }
     return result;
