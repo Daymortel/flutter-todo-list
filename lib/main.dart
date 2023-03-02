@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String title = 'To-Do List';
+    const String title = 'To-Do List';
     return MaterialApp(
       title: title,
       theme: ThemeData(

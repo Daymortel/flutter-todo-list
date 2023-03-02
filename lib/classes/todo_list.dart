@@ -4,6 +4,7 @@ enum CategoryEnum { shopping, sport, work }
 /// Classe abstraite servant à concevoir les Tâches de la TODO List
 abstract class Task {
   String name = "";
+  bool done = false;
   CategoryEnum category;
   
   Task(this.name, this.category);
