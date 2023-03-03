@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue
       ),
-      home: MyFormPage(title: 'Mon premier formulaire')
+      home: MyHomePage(title: title),
+      // home: MyFormPage(title: 'Mon premier formulaire')
     );
   }
 }

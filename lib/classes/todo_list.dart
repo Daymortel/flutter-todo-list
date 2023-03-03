@@ -8,6 +8,10 @@ abstract class Task {
   CategoryEnum category;
   
   Task(this.name, this.category);
+  void fromTask(Task task) {
+    name = task.name;
+    category = task.category;
+  }
   
   @override
   String toString() {

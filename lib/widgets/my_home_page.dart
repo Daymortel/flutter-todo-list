@@ -1,4 +1,5 @@
 import 'package:exo3/classes/todo_list.dart';
+import 'package:exo3/widgets/add_or_update_task.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -45,6 +46,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               ),
               title: Text(task.name),
+              trailing: Wrap(spacing: 12, children: [
+                IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () => _addOrUpdateTask(task),
+                ),
+                IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      setState(() {
+                        taskList.remove(task);
+                      });
+                    })
+              ]),
             ))
         .toList();
   }
@@ -72,22 +86,38 @@ class _MyHomePageState extends State<MyHomePage> {
                     blurRadius: 5),
               ]),
           child: ExpansionTile(
-            title: Text(category.name.toUpperCase()),
-            children: internalContainerListView
-          )));
+              title: Text(category.name.toUpperCase()),
+              children: internalContainerListView)));
     }
     return result;
+  }
+
+  void _addOrUpdateTask([Task? task]) async {
+    Task newTask = await showDialog(
+        context: context, builder: (_) => AddOrUpdateTaskPage(task: task));
+    setState(() {
+      if (task != null) {
+        task.fromTask(newTask);
+      } else {
+        taskList.add(newTask);
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(widget.title),
-        ),
-        body: ListView(
-          children: _drawTodoList(),
-        ));
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(widget.title),
+      ),
+      body: ListView(
+        children: _drawTodoList(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => _addOrUpdateTask(),
+      ),
+    );
   }
 }
