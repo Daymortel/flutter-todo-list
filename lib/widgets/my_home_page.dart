@@ -93,15 +93,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _addOrUpdateTask([Task? task]) async {
-    Task newTask = await showDialog(
+    Task? newTask = await showDialog(
         context: context, builder: (_) => AddOrUpdateTaskPage(task: task));
-    setState(() {
-      if (task != null) {
-        task.fromTask(newTask);
-      } else {
-        taskList.add(newTask);
-      }
-    });
+    if (newTask != null) {
+      setState(() {
+        if (task != null) {
+          task.fromTask(newTask);
+        } else {
+          taskList.add(newTask);
+        }
+      });
+    }
   }
 
   @override
